@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>倒计时</title>
+    <style>
+        div {
+            font-size: 54px;
+            text-align: center;
+            width: 1000px;
+            color: firebrick;
+            padding: 50px 0;
+            margin: 200px auto;
+            border: 10px solid;
+        }
+    </style>
+    <script>
+        function getTime(times) {
+            var date1 = + new Date();
+            var date2 = + new Date(times);
+            var lefTime = date2 - date1;
+            var sTime = Math.round(lefTime / 1000);
+            console.log(sTime);
+            var day = Math.floor(sTime / 60 / 60 / 24);
+            var h = Math.floor(sTime / 60 / 60 % 24);
+            var m = Math.floor(sTime / 60 % 60);
+            var s = Math.floor(sTime % 60);
+            h = h < 10 ? '0' + h : h;
+            m = m < 10 ? '0' + m : m;
+            s = s < 10 ? '0' + s : s;
+            var today = new Date();
+            var ss = Math.floor(today.getSeconds() % 10);
+            var arr = ['red', 'green', 'blue', 'black', 'pink', 'yellow', 'fuchsia', 'blueviolet', 'chocolate', 'darkred'];
+            document.getElementById('mytimes').style.color = arr[ss];
+            document.getElementById('mytimes').style.borderColor = arr[ss];
+            document.getElementById('mytimes').innerHTML = ('距离光棍节还有:' + day + '天' + h + '小时' + m + '分钟' + s + '秒');
+        }
+        var myTime = setInterval("getTime('2020-11-11 00:00:00')", 1000);
+    </script>
+</head>
+
+<body>
+    <div id="mytimes"></div>
+</body>
+
+</html>
